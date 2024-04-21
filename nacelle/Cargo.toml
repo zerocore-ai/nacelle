@@ -1,0 +1,30 @@
+[package]
+name = "nacelle"
+description = "nacelle is the heart of the `zerocore` serverless platform. It is concerned with setting up the webassembly runtime, providing necessary host functionalities to get it running properly."
+keywords = []
+categories = []
+documentation = "https://docs.rs/nacelle"
+version.workspace = true
+repository.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+ambient-authority = "0.0.2"
+anyhow.workspace = true
+nacelle-wasi.workspace = true
+serde.workspace = true
+structstruck.workspace = true
+thiserror.workspace = true
+typed-builder.workspace = true
+wasmtime.workspace = true
+
+[features]
+default = []
+# full = []
+zerodb = []
+zerofs = []
+
+[dev-dependencies]
+tempfile = "3.9.0"

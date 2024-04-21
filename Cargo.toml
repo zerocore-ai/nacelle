@@ -1,2 +1,31 @@
 [workspace]
-members = []
+members = ["nacelle", "nacelle-cli", "nacelle-wasi", "nacelle-zero"]
+
+[workspace.package]
+edition = "2018"
+version = "0.1.0"
+repository = "https://github.com/zerocore-ai/nacelle"
+license = "Apache-2.0"
+authors = ["Stephen Akinyemi <steve@zerocore.ai>"]
+
+[workspace.dependencies]
+anyhow = "1.0.79"
+clap = { version = "4.4.11", features = ["derive", "color"] }
+futures = "0.3.30"
+semver = { version = "1.0.20", features = ["serde"] }
+serde = { version = "1.0.193", features = ["derive"] }
+structstruck = "0.4.1"
+thiserror = "1.0.56"
+tokio = { version = "1.35.1", features = ["macros", "rt-multi-thread", "net"] }
+toml = "0.8.8"
+tracing = "0.1.40"
+tracing-subscriber = "0.3.17"
+typed-builder = "0.18.1"
+wasmtime = { git = "https://github.com/bytecodealliance/wasmtime", rev = "080994cf5", features = [
+    "component-model",
+    "async",
+] }
+wasmtime-wasi = { git = "https://github.com/bytecodealliance/wasmtime", rev = "080994cf5" }
+wit-bindgen = { git = "https://github.com/bytecodealliance/wit-bindgen", version = "0.16.0" }
+nacelle = { path = "nacelle" }
+nacelle-wasi = { path = "nacelle-wasi" }

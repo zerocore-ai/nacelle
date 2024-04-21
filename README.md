@@ -24,10 +24,28 @@
   </p> -->
 </div>
 
-**`nacelle-wasi`** provides a minimal [WebAssembly System Interface (WASI)][wasi] implementation for use in the [`zerocore`][zerocore] project.
-It replaces the traditional filesystem implementation and makes some adjustments to the capability system.
+**nacelle** is a runtime and a collection of libraries for running WASI and zero-enabled applications. It introduces a new capability system that diverges a bit from the traditional WASI capabilities.
 
-##
+### Crate Dependency Graph
+
+```mermaid
+flowchart TD
+    nacelle --> nacelle-wasi
+    nacelle --> nacelle-zero
+
+    nacelle-wasi --> cli
+    nacelle-wasi --> clocks
+    nacelle-wasi --> random
+    nacelle-wasi --> sockets
+    nacelle-wasi --> filesystem
+    nacelle-wasi --> http
+
+    nacelle-zero --> db
+    nacelle-zero --> ml
+    nacelle-zero --> ...
+```
+
+</br>
 
 > [!WARNING]
 > This project is in early development and is not yet ready for production use.
@@ -41,26 +59,14 @@ It replaces the traditional filesystem implementation and makes some adjustments
 
 ## Acknowledgments
 
-This project makes extensive use of code from the [wasmtime](https://github.com/bytecodealliance/wasmtime) project, specifically the `wasmtime-wasi` sub-crate. The `wasmtime` project is an impactful open-source initiative that enables us to achieve our goals more efficiently by leveraging their robust WebAssembly runtime implementation.
+This project makes use of code from the [wasmtime][wasmtime] project. The `wasmtime` project is an impactful open-source initiative that enables us to achieve our goals more efficiently by leveraging their robust WebAssembly runtime implementation.
 
 ## License
 
-This project is licensed under the [Apache License 2.0](./LICENSE), or
-[http://www.apache.org/licenses/LICENSE-2.0][apache].
-
-The `wasmtime-wasi` code utilized in this project is available under the [Apache License 2.0 with LLVM Exception][wasmtime-apache], the same license as the `wasmtime` project itself. We are deeply grateful to the `wasmtime` contributors for their work and encourage users to support the original project.
-
+This project is licensed under the [Apache License 2.0](./LICENSE).
 
 [apache]: https://www.apache.org/licenses/LICENSE-2.0
-[wasmtime-apache]: (https://github.com/bytecodealliance/wasmtime/blob/main/LICENSE)
-[buildx]: https://github.com/docker/buildx
-[cargo-expand]: https://github.com/dtolnay/cargo-expand
-[cargo-udeps]: https://github.com/est31/cargo-udeps
-[cargo-watch]: https://github.com/watchexec/cargo-watch
-[commit-spec]: https://www.conventionalcommits.org/en/v1.0.0/#specification
-[commit-spec-site]: https://www.conventionalcommits.org/
-[docker-engine]: https://docs.docker.com/engine/
-[irust]: https://github.com/sigmaSd/IRust
-[pre-commit]: https://pre-commit.com/
 [zerocore]: https://github.com/zerocore-ai/zerocore
 [wasi]: https://wasi.dev/
+[wasmtime]: https://github.com/bytecodealliance/wasmtime
+[cap_std]: https://github.com/bytecodealliance/cap-std

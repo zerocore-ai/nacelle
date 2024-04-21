@@ -1,0 +1,17 @@
+[package]
+name = "nacelle-zero"
+description = "zero implementation for Nacelle"
+keywords = []
+categories = []
+documentation = "https://docs.rs/nacelle-zero"
+version.workspace = true
+repository.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+wasmtime.workspace = true
+
+[features]
+default = []

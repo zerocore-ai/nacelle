@@ -1,0 +1,18 @@
+[package]
+name = "nacelle-wasi"
+description = "WASI preview 2 implementation for Nacelle"
+keywords = []
+categories = []
+documentation = "https://docs.rs/nacelle-wasi"
+version.workspace = true
+repository.workspace = true
+authors.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+tracing.workspace = true
+wasmtime.workspace = true
+
+[features]
+default = []

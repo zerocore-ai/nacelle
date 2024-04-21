@@ -1,0 +1,10 @@
+package nacelle:wasi@0.1.0;
+
+world imports {
+    include wasi:clocks/imports@0.2.0;
+    include wasi:filesystem/imports@0.2.0;
+    include wasi:random/imports@0.2.0;
+    include wasi:io/imports@0.2.0;
+    include wasi:http/proxy@0.2.0;
+    include wasi:cli/imports@0.2.0;
+}

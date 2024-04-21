@@ -1,0 +1,7 @@
+- [ ] nacelle-wasi
+    - [ ] implement nacelle WASI bindings
+        - [ ] wasi:cli
+        - [ ] wasi:fs
+    - [ ] starting nacelle WASI state
+        - [ ] Resource Table
+    - [ ] implement nacelle-std/fs
