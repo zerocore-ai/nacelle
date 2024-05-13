@@ -12,7 +12,7 @@ authors = ["Stephen Akinyemi <steve@zerocore.ai>"]
 anyhow = "1.0.79"
 clap = { version = "4.4.11", features = ["derive", "color"] }
 futures = "0.3.30"
-semver = { version = "1.0.20", features = ["serde"] }
+semver = { version = "1.0.23", features = ["serde"] }
 serde = { version = "1.0.193", features = ["derive"] }
 structstruck = "0.4.1"
 thiserror = "1.0.56"
