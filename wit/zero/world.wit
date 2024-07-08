@@ -1,4 +1,3 @@
 package nacelle:zero@0.1.0;
 
-world zero {
-}
+world imports {}

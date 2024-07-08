@@ -1,6 +1,6 @@
 use wasmtime::component::Linker;
 
-use crate::ctx::WasiState;
+use crate::WasiState;
 
 //--------------------------------------------------------------------------------------------------
 // Functions

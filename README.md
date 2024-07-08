@@ -3,7 +3,7 @@
     <img src="https://raw.githubusercontent.com/zerocore-ai/nacelle-wasi/main/assets/a_logo.png" alt="nacelle-wasi Logo" width="100"></img>
   </a> -->
 
-  <h1 align="center">nacelle-wasi</h1>
+  <h1 align="center">nacelle</h1>
 
   <!-- <p>
     <a href="https://crates.io/crates/nacelle-wasi">

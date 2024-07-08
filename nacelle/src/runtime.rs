@@ -16,8 +16,6 @@ use wasmtime::{Engine, Instance, Module, Store};
 #[derive(Default)]
 pub struct Nacelle {
     engine: Engine,
-    _fs_base: Option<PathBuf>,
-    _distributed_fs: bool,
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -26,14 +24,9 @@ pub struct Nacelle {
 
 impl Nacelle {
     /// Creates a new Zerocore runtime.
-    pub fn with_base(fs_base: PathBuf) -> Result<Self> {
-        // Canonicalize the system base if requested.
-        let fs_base = Some(fs_base.canonicalize()?);
-
+    pub fn new() -> Result<Self> {
         Ok(Self {
             engine: Engine::default(),
-            _fs_base: fs_base,
-            _distributed_fs: false, // TODO(appcypher): Support distributed fs. And should not be optional.
         })
     }
 
@@ -74,77 +67,10 @@ impl Nacelle {
         _permissions: &Permissions,
         _partition: Option<&Path>,
     ) -> Result<(Store<WasiContext>, Instance)> {
-        // // Create linker.
-        // let mut linker = Linker::new(&self.engine);
-
-        // // Add the WASI functions to the linker.
-        // nacelle_wasi::add_to_linker(&mut linker);
-
-        // // Prepare the WASI context.
-        // let wasi_ctx = self.prepare_wasi_context()?;
-
-        // // Create a store based on the engine and the WASI context.
-        // let mut store = Store::new(&self.engine, wasi_ctx);
-
-        // // Instantiate the module.
-        // let instance = linker.instantiate(&mut store, module)?;
-
-        // Ok((store, instance))
-
         todo!("Prepare the instance for execution")
     }
 
     fn _prepare_wasi_context(&self) -> Result<WasiContext> {
         todo!("Prepare the WASI context")
     }
-
-    // /// Prepares the context for running modules.
-    // /// TODO: To be removed.
-    // fn prepare_context(
-    //     &self,
-    //     permissions: &Permissions,
-    //     partition: Option<&Path>,
-    // ) -> Result<WasiCtx> {
-    //     // Create the WASI contex.
-    //     let mut wasi_ctx_builder = WasiCtxBuilder::new();
-
-    //     // Pre-open the permissioned directories.
-    //     if !permissions.fs.directories.is_empty() {
-    //         for permissioned_dir in &permissions.fs.directories {
-    //             // If system base is provided, join, otherwise canonicalize dir.
-    //             let permissioned_dir = if let Some(fs_base) = &self.fs_base {
-    //                 // If partition is provided, join and canonicalize.
-    //                 let final_base = if let Some(partition) = partition {
-    //                     fs_base.join(partition).canonicalize()?
-    //                 } else {
-    //                     fs_base.clone()
-    //                 };
-
-    //                 // Important: We still need to canonicalize the join to make sure it is not escaping
-    //                 // the system base.
-    //                 let canon_permissioned_dir =
-    //                     final_base.join(permissioned_dir).canonicalize()?;
-    //                 if canon_permissioned_dir.starts_with(&final_base) {
-    //                     canon_permissioned_dir
-    //                 } else {
-    //                     return Err(NacelleError::PermissionedDirectoryEscape(
-    //                         permissioned_dir.clone(),
-    //                         final_base,
-    //                     ));
-    //                 }
-    //             } else {
-    //                 permissioned_dir.canonicalize()?
-    //             };
-
-    //             // Pre-open the directory.
-    //             let permissioned_dir =
-    //                 Dir::open_ambient_dir(&permissioned_dir, ambient_authority())?;
-
-    //             // Add the directory to the WASI context.
-    //             wasi_ctx_builder.preopened_dir(permissioned_dir, "/")?;
-    //         }
-    //     }
-
-    //     Ok(wasi_ctx_builder.build())
-    // }
 }

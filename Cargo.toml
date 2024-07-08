@@ -9,7 +9,9 @@ license = "Apache-2.0"
 authors = ["Stephen Akinyemi <steve@zerocore.ai>"]
 
 [workspace.dependencies]
+async-trait = "0.1.77"
 anyhow = "1.0.79"
+bitflags = "2.5.0"
 clap = { version = "4.4.11", features = ["derive", "color"] }
 futures = "0.3.30"
 semver = { version = "1.0.20", features = ["serde"] }
@@ -21,11 +23,17 @@ toml = "0.8.8"
 tracing = "0.1.40"
 tracing-subscriber = "0.3.17"
 typed-builder = "0.18.1"
-wasmtime = { git = "https://github.com/bytecodealliance/wasmtime", rev = "080994cf5", features = [
+wasmtime = { git = "https://github.com/bytecodealliance/wasmtime", rev = "1cf3a9dad", features = [
     "component-model",
     "async",
 ] }
-wasmtime-wasi = { git = "https://github.com/bytecodealliance/wasmtime", rev = "080994cf5" }
 wit-bindgen = { git = "https://github.com/bytecodealliance/wit-bindgen", version = "0.16.0" }
 nacelle = { path = "nacelle" }
 nacelle-wasi = { path = "nacelle-wasi" }
+zeroutils-did-wk = { path = "../zeroutils/zeroutils-did-wk" }
+zeroutils-ucan = { path = "../zeroutils/zeroutils-ucan" }
+zeroutils-key = { path = "../zeroutils/zeroutils-key" }
+zeroutils-config = { path = "../zeroutils/zeroutils-config" }
+zeroutils-store = { path = "../zeroutils/zeroutils-store" }
+zeroutils-wasi = { path = "../zeroutils/zeroutils-wasi" }
+zerofs = { path = "../zerofs/zerofs" }

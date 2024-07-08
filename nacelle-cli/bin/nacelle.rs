@@ -23,11 +23,7 @@ fn main() -> Result<()> {
             dir,
             base,
         }) => {
-            let runtime = if let Some(base) = base {
-                Nacelle::with_base(base.into())?
-            } else {
-                Nacelle::default()
-            };
+            let runtime = Nacelle::default();
 
             // Compile module.
             let module = runtime.compile_from_file(path)?;

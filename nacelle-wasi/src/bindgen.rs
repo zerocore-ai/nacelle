@@ -7,15 +7,14 @@
 mod generated {
     wasmtime::component::bindgen!({
         path: "../wit/wasi",
-        world: "nacelle:wasi/imports@0.1.0",
-        tracing: true,
-        // trappable_error_type: {
-        //      "wasi:io/streams/stream-error" => StreamError,
-        //      "wasi:filesystem/types/error-code" => FsError,
-        // },
+        world: "nacelle:wasi/imports@0.1.0", // The world that serves as entry point for the generated code.
+        tracing: true, // Adds tracing calls to the generated code.
+        trappable_imports: true, // Allow imports to trap.
+        trappable_error_type: {
+            "wasi:filesystem/types/error-code" => zerofs::filesystem::FsError,
+        },
         async: {
-            // These are the only methods and functions that are async,
-            // all other methods are synchronous.
+            // These are the only methods and functions that are async, all other methods are synchronous.
             // TODO: Add wasi:http async methods
             only_imports: [
                 "[method]descriptor.access-at",
@@ -62,20 +61,15 @@ mod generated {
                 "[method]output-stream.blocking-write-and-flush",
                 "[method]output-stream.blocking-write-zeroes-and-flush",
                 "[method]directory-entry-stream.read-directory-entry",
-                "poll",
-                "[method]pollable.block",
-                "[method]pollable.ready",
             ]
         },
         with: {
-            // // === Filesystem ===
-            // "wasi:filesystem/types/directory-entry-stream": crate::filesystem::DirectoryEntryStream,
-            // "wasi:filesystem/types/descriptor": crate::filesystem::Descriptor,
-            // // === IO ===
-            // "wasi:io/streams/input-stream": crate::stream::InputStream,
-            // "wasi:io/streams/output-stream": crate::stream::OutputStream,
-            // "wasi:io/error/error": crate::stream::Error,
-            // "wasi:io/poll/pollable": crate::poll::Pollable,
+            "wasi:filesystem/types/directory-entry-stream": crate::filesystem::DirectoryEntryStream,
+            "wasi:filesystem/types/descriptor": crate::filesystem::DescriptorHandle,
+            "wasi:io/streams/input-stream": zeroutils_wasi::io::InputStreamHandle,
+            "wasi:io/streams/output-stream": zeroutils_wasi::io::OutputStreamHandle,
         }
     });
 }
+
+pub use generated::wasi::*;
